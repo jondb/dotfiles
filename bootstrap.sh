@@ -5,12 +5,18 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin main;
 
 function doIt() {
+	dryrun=''
+	if [ "$1" == "dryrun" ]; then
+		dryrun='--dry-run'
+	fi
 	rsync --exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
+		--exclude "shelf" \
+		$dryrun \
 		-avh --no-perms . ~;
 	source ~/.bash_profile;
 }
@@ -18,6 +24,7 @@ function doIt() {
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt;
 else
+	doIt dryrun
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
