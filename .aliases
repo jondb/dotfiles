@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-
-alias gs='git status -s'
-alias gb='git branch --show-current'
+# Git shortcuts
+alias gd='git d'
+alias gs='git s'
+alias gb='git b'
+alias gf='git f'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`

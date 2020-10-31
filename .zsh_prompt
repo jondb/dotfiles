@@ -1,0 +1,8 @@
+# Git branch info
+export GIT_PS1_SHOWDIRTYSTATE=x
+export GIT_PS1_SHOWCOLORHINTS=1 
+export GIT_PS1_SHOWUPSTREAM=auto
+
+source ~/.git-prompt.sh
+# __git_ps1 "start" "end" "printf_format"
+precmd () { __git_ps1 "" "%F{27}%2~%f %# "  "%s:"}

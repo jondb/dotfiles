@@ -7,10 +7,16 @@
 	s = status -s
 
 	# Show the diff between the latest commit and the current state.
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+	d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
 
 	# `git di $number` shows the diff between the state `$number` revisions ago and the current state.
 	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+	# Show current branch
+	b = branch --show-current
+
+	# Show changed files
+	f = diff --name-only
 
 	# # Pull in remote changes for the current repository and all its submodules.
 	# p = pull --recurse-submodules
@@ -114,7 +120,7 @@
 [color "diff"]
 
 	meta = yellow bold
-	frag = magenta bold # line info
+	#frag = magenta bold # line info
 	old = red # deletions
 	new = green # additions
 
