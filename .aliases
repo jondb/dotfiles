@@ -6,6 +6,10 @@ alias gs='git s'
 alias gb='git b'
 alias gf='git f'
 
+
+# SSH Key
+alias ssh-key-copy='cat ~/.ssh/id_rsa.pub | pbcopy'
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
