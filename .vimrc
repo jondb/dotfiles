@@ -1,108 +1,75 @@
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
 
-" Make Vim more useful
-set nocompatible
-" Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
-" Enhance command-line completion
-set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
-" Allow backspace in insert mode
-set backspace=indent,eol,start
-" Optimize for fast terminal connections
-set ttyfast
-" Add the g flag to search/replace by default
-" set gdefault
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
-" Change mapleader
-" let mapleader=","
-" Don’t add empty newlines at the end of files
-" set binary
-" set noeol
+
+set modelines=0     " CVE-2007-2438
+set nocompatible        " Use Vim defaults instead of 100% vi compatibility
+
+set history=200  " keep 200 lines of command line history
+set ruler               " show the cursor position all the time
+
+set backspace=2         " more powerful backspacing
+set tabstop=2		" Make tabs as wide as two spaces
+set expandtab		" spaces not tabs
+
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
-	set undodir=~/.vim/undo
+        set undodir=~/.vim/undo
 endif
-
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
 
-" Respect modeline in files
-" set modeline
-" set modelines=4
-" Enable per-directory .vimrc files and disable unsafe commands in them
-" set exrc
-" set secure
-" Enable line numbers
-set number
-" Enable syntax highlighting
-syntax on
-" Highlight current line
-set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
-" spaces not tabs
-set expandtab
-" Show “invisible” characters
-" set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-" set list
-" Highlight searches
-set hlsearch
-" Ignore case of searches
-set ignorecase
-" Highlight dynamically as pattern is typed
-set incsearch
-" Always show status line
-set laststatus=2
-" Enable mouse in all modes
-set mouse=a
-" Disable error bells
-set noerrorbells
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-" Show the cursor position
-" set ruler
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-" Show the current mode
-set showmode
-" Show the filename in the window titlebar
-" set title
-" Show the (partial) command as it’s being typed
-set showcmd
-" Use relative line numbers
-" if exists("&relativenumber")
-"	set relativenumber
-"	au BufReadPost * set relativenumber
-" endif
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
+" Don't write backup file if vim is being called by "crontab -e"
+au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+" Don't write backup file if vim is being called by "chpass"
+au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
-" Strip trailing whitespace (,ss)
-" function! StripWhitespace()
-" 	let save_cursor = getpos(".")
-" 	let old_query = getreg('/')
-" 	:%s/\s\+$//e
-" 	call setpos('.', save_cursor)
-" 	call setreg('/', old_query)
-" endfunction
-" noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
-" noremap <leader>W :w !sudo tee % > /dev/null<CR>
+let skip_defaults_vim=1  " Don't load ./usr/share/vim/vim81/defaults.vim
+
+
+" Vim5 and later versions support syntax highlighting. Uncommenting the next
+" line enables syntax highlighting by default.
+if has("syntax")
+  syntax on
+endif
+
+" If using a dark background within the editing area and syntax highlighting
+" turn on this option as well
+set background=dark
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+"au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Uncomment the following to have Vim load indentation rules and plugins
+" according to the detected filetype.
+"filetype plugin indent on
+
+" The following are commented out as they cause vim to behave a lot
+" differently from regular Vi. They are highly recommended though.
+set showcmd		" Show (partial) command in status line.
+set wildmenu            " display completion matches in a status line
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+set incsearch		" Incremental search
+set autowrite		" Automatically save before commands like :next and :make
+set hidden		" Hide buffers when they are abandoned
+set mouse=a		" Enable mouse usage (all modes)
+
+" Source a global configuration file if available
+"if filereadable("/etc/vim/vimrc.local")
+"  source /etc/vim/vimrc.local
+"endif
 
 " Automatic commands
 if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+        " Enable file type detection
+        filetype on
+        " Treat .json files as .js
+        autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+        " Treat .md files as Markdown
+        autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+
