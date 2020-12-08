@@ -21,14 +21,14 @@ function epochms() {
 	printf $milliseconds
 }
 
-mkdir -p ${DEST}
+mkdir -p "${DEST}"
 
-TAG=${1:-screenshot}
-FILE=${DEST}/$(date +"%F")-${TAG}-$(epochms)$(rand).png
+TAG="${1:-screenshot}"
+FILE="${DEST}/$(date +"%F")-${TAG}-$(epochms)$(rand).png"
 
 echo $FILE
 
-$SCEXEC -i ${FILE}
+$SCEXEC -i "${FILE}"
 
 open "${DEST}"
 
