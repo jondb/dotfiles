@@ -29,3 +29,5 @@ export LESS_TERMCAP_md="${yellow}";
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -isX';
 
+export PATH=$PATH:$HOME/work/google-cloud-sdk/bin
+

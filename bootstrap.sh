@@ -6,7 +6,7 @@ git pull origin main;
 
 function doIt() {
 
-rsync --exclude ".git/" \
+	rsync --exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
@@ -15,8 +15,7 @@ rsync --exclude ".git/" \
 		--exclude "shelf" \
 		$dryrun \
 		-avh --no-perms . ~;
-	source ~/.bash_profile;
-~/bin/install-nvm.sh
+	./installs/install.sh
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

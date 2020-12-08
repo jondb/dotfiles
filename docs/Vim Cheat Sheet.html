@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Vim Cheat Sheet</title>
+<style>
+  /*Layout*/
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.grid-block {
+  clear: both;
+  letter-spacing: -0.31em;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  display: -ms-flexbox;
+  -ms-flex-flow: row wrap;
+  overflow: hidden;
+  text-rendering: optimizespeed;
+  width: 100%;
+}
+
+.grid-block,
+.grid-1,
+.grid-lg-1-2,
+.grid-lg-1-3 {
+  display: inline-block;
+  float: left;
+  letter-spacing: normal;
+  padding: 0px 10px;
+  vertical-align: top;
+  word-spacing: normal;
+  text-rendering: auto;
+  width: 100%;
+  zoom: 1;
+}
+
+/*Large*/
+@media screen and (min-width: 64em) {
+  .grid-lg-1-2 {
+    width: 50%;
+  }
+  .grid-lg-1-3 {
+    width: 33.3333%;
+  }
+}
+/*-----------------*/
+
+body {
+  background-color: #fff;
+  color: #000;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: inherit;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: 1.1;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 45px;
+  margin-bottom: 0px;
+  margin-top: 30px;
+}
+
+h1 a {
+  color: #fa4949;
+}
+
+h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 24px;
+}
+
+a {
+  color: #1a0dab;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin: 12px 0;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  border-bottom: 1px dashed #e0e0e0;
+  line-height: 1.55;
+  list-style-type: none;
+  padding: 7px 0;
+}
+
+kbd {
+  background-color: #eee;
+  color: #000;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: 'Inconsolata', monospace;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 4px;
+}
+
+.container {
+  background: #fff;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1170px;
+}
+
+.well {
+  background: #f8f8f8;
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  min-height: 20px;
+  margin-bottom: 20px;
+  padding: 19px;
+}
+
+.link-to-repo {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.link-to-repo p {
+  margin-bottom: inherit;
+}
+
+.ja {
+  font-size: 13px;
+}
+
+.ja h2 {
+  font-size: 20px;
+}
+
+.ja kbd {
+  font-size: 16px;
+}
+
+.box {
+  background: #f8f8f8;
+  border: 1px solid #e7e7e7;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.box .grid-block {
+  padding: 0;
+}
+
+.box-header {
+  background: #ebebeb;
+  min-height: 30px;
+  padding: 10px;
+}
+
+.box-header h2 {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.box-body {
+  font-size: 14px;
+  display: block;
+  clear: both;
+  overflow: hidden;
+  padding: 0 10px;
+  padding-bottom: 20px;
+}
+
+.box-body li {
+  border-bottom: none;
+  line-height: inherit;
+  list-style-type: none;
+  padding: 7px 7px;
+}
+
+.weekend-dev {
+  width: 100%;
+  background: rgb(27, 27, 27);
+  color: #fff;
+}
+
+.weekend-dev p {
+  margin: 0;
+  padding: 0;
+}
+
+.weekend-dev .container {
+  background: transparent;
+  padding: 20px;
+}
+
+.weekend-dev a,
+.weekend-dev a:hover,
+.weekend-dev a:visited {
+  color: #c300ff;
+  font-weight: bold;
+}
+
+@media print {
+  html,
+  body {
+    height: 90%;
+  }
+
+  body {
+    line-height: 1.3;
+    font-size: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin-left: 0;
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 10px;
+    margin-bottom: -10px;
+    margin-top: 0;
+    line-height: 10px;
+  }
+
+  #footer,
+  .link-to-repo {
+    height: 0px;
+    display: none;
+  }
+
+  .commands-container {
+    clear: both;
+    overflow: hidden;
+  }
+
+  .commands-container > .grid-block:first-child {
+    width: 60%;
+  }
+
+  .commands-container > .grid-block:last-child .grid-lg-1-3 {
+    width: 50%;
+  }
+
+  .grid-block {
+    clear: none;
+    float: left;
+    display: inline-block;
+    overflow: hidden;
+    width: 40%;
+  }
+
+  .grid-1 {
+    padding: 0;
+    margin: 0;
+  }
+
+  .grid-lg-1-3 {
+    display: inline-block;
+    float: left;
+    letter-spacing: normal;
+    padding: 0;
+    word-spacing: normal;
+    text-rendering: auto;
+    width: 33.3333%;
+    zoom: 1;
+  }
+
+  li {
+    line-height: initial;
+    padding: 4px 5px;
+  }
+
+  kbd {
+    color: #000;
+    font-size: 12px;
+    padding: 0;
+  }
+
+  .well {
+    height: 0px;
+    display: none;
+  }
+}
+
+@page {
+  margin: 0.5cm;
+}
+</style>
+<body>
+  <div class="container">
+    <div class="grid-block">
+      <div class="grid-1">
+        <h1>
+          <a class="site-title" href="#">
+            Vim Cheat Sheet
+          </a>
+        </h1>
+      </div>
+    </div>
+    <div class="container">
+      <main><div class="container">
+  <div class="commands-container">
+    <div class="grid-block">
+      <div class="grid-lg-1-3">
+        <h2>Cursor movement</h2>
+        <ul>
+          <li>
+            <kbd>h</kbd> - move cursor left
+          </li>
+          <li>
+            <kbd>j</kbd> - move cursor down
+          </li>
+          <li>
+            <kbd>k</kbd> - move cursor up
+          </li>
+          <li>
+            <kbd>l</kbd> - move cursor right
+          </li>
+          <li>
+            <kbd>H</kbd> - move to top of screen
+          </li>
+          <li>
+            <kbd>M</kbd> - move to middle of screen
+          </li>
+          <li>
+            <kbd>L</kbd> - move to bottom of screen
+          </li>
+          <li>
+            <kbd>w</kbd> - jump forwards to the start of a word
+          </li>
+          <li>
+            <kbd>W</kbd> - jump forwards to the start of a word (words can contain punctuation)
+          </li>
+          
+          <li>
+            <kbd>b</kbd> - jump backwards to the start of a word
+          </li>
+          <li>
+            <kbd>B</kbd> - jump backwards to the start of a word (words can contain punctuation)
+          </li>
+          <li>
+            <kbd>0</kbd> or <kbd>^</kbd> - jump to the start of the line
+          </li>
+          <li>
+            <kbd>$</kbd> - jump to the end of the line
+          </li>
+          <li>
+            <kbd>gg</kbd> - go to the first line of the document
+          </li>
+          <li>
+            <kbd>G</kbd> - go to the last line of the document
+          </li>
+          <li>
+            <kbd>5gg</kbd> or <kbd>5G</kbd> - go to line 5
+          </li>
+          
+          <li>
+            <kbd>}</kbd> - jump to next paragraph (or function/block, when editing code)
+          </li>
+          <li>
+            <kbd>{</kbd> - jump to previous paragraph (or function/block, when editing code)
+          </li>
+          <li>
+            <kbd>zz</kbd> - center cursor on screen
+          </li>
+        </ul>
+        <div class="well">
+          <strong>Tip</strong>
+          Prefix a cursor movement command with a number to repeat it. For example, <kbd>4j</kbd> moves down 4 lines.
+        </div>
+
+        <h2>Insert mode - inserting/appending text</h2>
+        <ul>
+          <li>
+            <kbd>i</kbd> - insert before the cursor
+          </li>
+          <li>
+            <kbd>I</kbd> - insert at the beginning of the line
+          </li>
+          <li>
+            <kbd>a</kbd> - insert (append) after the cursor
+          </li>
+          <li>
+            <kbd>A</kbd> - insert (append) at the end of the line
+          </li>
+          <li>
+            <kbd>o</kbd> - append (open) a new line below the current line
+          </li>
+          <li>
+            <kbd>O</kbd> - append (open) a new line above the current line
+          </li>
+          <li>
+            <kbd>ea</kbd> - insert (append) at the end of the word
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>h</kbd> - delete the character before the cursor during insert mode
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>w</kbd> - delete word before the cursor during insert mode
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>j</kbd> - begin new line during insert mode
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>t</kbd> - indent (move right) line one shiftwidth during insert mode
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>d</kbd> - de-indent (move left) line one shiftwidth during insert mode
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>n</kbd> - insert (auto-complete) next match before the cursor during insert mode
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>p</kbd> - insert (auto-complete) previous match before the cursor during insert mode
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>rx</kbd> - insert the contents of register x
+          </li>
+          <li>
+            <kbd>Esc</kbd> - exit insert mode
+          </li>
+        </ul>
+         <h2>Exiting</h2>
+        <ul>
+          <li>
+            <kbd>:w</kbd> - write (save) the file, but don't exit
+          </li>
+          <li>
+            <kbd>:w !sudo tee %</kbd> - write out the current file using sudo
+          </li>
+          <li>
+            <kbd>:wq</kbd> or <kbd>:x</kbd> or <kbd>ZZ</kbd> - write (save) and quit
+          </li>
+          <li>
+            <kbd>:q</kbd> - quit (fails if there are unsaved changes)
+          </li>
+          <li>
+            <kbd>:q!</kbd> or <kbd>ZQ</kbd> - quit and throw away unsaved changes
+          </li>
+          <li>
+            <kbd>:wqa</kbd> - write (save) and quit on all tabs
+          </li>
+        </ul>
+      </div>
+      <div class="grid-lg-1-3">
+        <h2>Editing</h2>
+        <ul>
+          <li>
+            <kbd>r</kbd> - replace a single character
+          </li>
+          <li>
+            <kbd>J</kbd> - join line below to the current one with one space in between
+          </li>
+          
+          <li>
+            <kbd>cc</kbd> - change (replace) entire line
+          </li>
+          <li>
+            <kbd>c$</kbd> - change (replace) to the end of the line
+          </li>
+          <li>
+            <kbd>cw</kbd> - change (replace) to the end of the word
+          </li>
+          <li>
+            <kbd>s</kbd> - delete character and substitute text
+          </li>
+          <li>
+            <kbd>u</kbd> - undo
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>r</kbd> - redo
+          </li>
+          <li>
+            <kbd>.</kbd> - repeat last command
+          </li>
+        </ul>
+
+        <h2>Visual commands</h2>
+        <ul>
+          <li>
+            <kbd>&gt;</kbd> - shift text right
+          </li>
+          <li>
+            <kbd>&lt;</kbd> - shift text left
+          </li>
+          <li>
+            <kbd>y</kbd> - yank (copy) marked text
+          </li>
+          <li>
+            <kbd>d</kbd> - delete marked text
+          </li>
+          <li>
+            <kbd>~</kbd> - switch case
+          </li>
+          <li>
+            <kbd>u</kbd> - change marked text to lowercase
+          </li>
+          <li>
+            <kbd>U</kbd> - change marked text to uppercase
+          </li>
+        </ul>
+                        <h2>Marking text (visual mode)</h2>
+        <ul>
+          <li>
+            <kbd>v</kbd> - start visual mode, mark lines, then do a command (like y-yank)
+          </li>
+          <li>
+            <kbd>o</kbd> - move to other end of marked area
+          </li>
+          <li>
+            <kbd>O</kbd> - move to other corner of block
+          </li>
+          <li>
+            <kbd>aw</kbd> - mark a word
+          </li>
+          <li>
+            <kbd>a(</kbd> - a block with ()
+          </li>
+          <li>
+            <kbd>a{</kbd> - a block with {}
+          </li>
+          
+        </ul>
+        <div class="well">
+          <strong>Tip</strong> Instead of <kbd>b</kbd> or <kbd>B</kbd> one can also use <kbd>(</kbd> or <kbd>{</kbd> respectively.
+        </div>
+        <h2>Cut and paste</h2>
+        <ul>
+          <li>
+            <kbd>yy</kbd> - yank (copy) a line
+          </li>
+          <li>
+            <kbd>2yy</kbd> - yank (copy) 2 lines
+          </li>
+          <li>
+            <kbd>yw</kbd> - yank (copy) the characters of the word from the cursor position to the start of the next word
+          </li>
+          <li>
+            <kbd>y$</kbd> - yank (copy) to end of line
+          </li>
+          <li>
+            <kbd>p</kbd> - put (paste) the clipboard after cursor
+          </li>
+          <li>
+            <kbd>P</kbd> - put (paste) before cursor
+          </li>
+          <li>
+            <kbd>dd</kbd> - delete (cut) a line
+          </li>
+          <li>
+            <kbd>2dd</kbd> - delete (cut) 2 lines
+          </li>
+          <li>
+            <kbd>dw</kbd> - delete (cut) the characters of the word from the cursor position to the start of the next word
+          </li>
+          <li>
+            <kbd>D</kbd> - delete (cut) to the end of the line
+          </li>
+          <li>
+            <kbd>d$</kbd> - delete (cut) to the end of the line
+          </li>
+          <li>
+            <kbd>x</kbd> - delete (cut) character
+          </li>
+        </ul>
+        <h2>Search and replace</h2>
+        <ul>
+          <li>
+            <kbd>/pattern</kbd> - search for pattern
+          </li>
+          <li>
+            <kbd>\vpattern</kbd> - 'very magic' pattern: non-alphanumeric characters are interpreted as special regex symbols (no escaping needed)
+          </li>
+          <li>
+            <kbd>n</kbd> - repeat search in same direction
+          </li>
+          <li>
+            <kbd>N</kbd> - repeat search in opposite direction
+          </li>
+          <li>
+            <kbd>:%s/old/new/g</kbd> -
+            replace all old with new throughout file
+          </li>
+          <li>
+            <kbd>:%s/old/new/gc</kbd> -
+            replace all old with new throughout file with confirmations
+          </li>
+
+        </ul>
+        
+      </div>
+      <div class="grid-lg-1-3">
+
+        
+        <h2>Indent text</h2>
+        <ul>
+          <li>
+            <kbd>&gt;&gt;</kbd> - indent (move right) line one shiftwidth
+          </li>
+          <li>
+            <kbd>&lt;&lt;</kbd> - de-indent (move left) line one shiftwidth
+          </li>
+          <li>
+            <kbd>&gt;%</kbd> - indent a block with () or {} (cursor on brace)
+          </li>
+          <li>
+            <kbd>3==</kbd> - re-indent 3 lines
+          </li>
+          <li>
+            <kbd>=%</kbd> - re-indent a block with () or {} (cursor on brace)
+          </li>
+
+          <li>
+            <kbd>]p</kbd> - paste and adjust indent to current line
+          </li>
+        </ul>
+
+<h2>Marks and positions</h2>
+        <ul>
+          <li>
+            <kbd>:marks</kbd> - list of marks
+          </li>
+          <li>
+            <kbd>ma</kbd> - set current position for mark A
+          </li>
+          <li>
+            <kbd>`a</kbd> - jump to position of mark A
+          </li>
+          <li>
+            <kbd>y`a</kbd> - yank text to position of mark A
+          </li>
+          <li>
+            <kbd>`0</kbd> - go to the position where Vim was previously exited
+          </li>
+          <li>
+            <kbd>`"</kbd> - go to the position when last editing this file
+          </li>
+          <li>
+            <kbd>`.</kbd> - go to the position of the last change in this file
+          </li>
+          <li>
+            <kbd>``</kbd> - go to the position before the last jump
+          </li>
+          <li>
+            <kbd>:ju[mps]</kbd> - list of jumps
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>i</kbd> - go to newer position in jump list
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>o</kbd> - go to older position in jump list
+          </li>
+          <li>
+            <kbd>:changes</kbd> - list of changes
+          </li>
+          <li>
+            <kbd>g,</kbd> - go to newer position in change list
+          </li>
+          <li>
+            <kbd>g;</kbd> - go to older position in change list
+          </li>
+          <li>
+            <kbd>Ctrl</kbd> + <kbd>]</kbd> - jump to the tag under cursor
+          </li>
+        </ul>
+        <div class="well">
+          <strong>Tip</strong> To jump to a mark you can either use a backtick (<kbd>`</kbd>) or an apostrophe (<kbd>'</kbd>). Using an apostrophe jumps to the beginning (first non-black) of the line holding the mark.
+        </div>
+        <h2>Registers</h2>
+        <ul>
+          <li>
+            <kbd>:reg[isters]</kbd> - show registers content
+          </li>
+          <li>
+            <kbd>"xy</kbd> - yank into register x
+          </li>
+          <li>
+            <kbd>"xp</kbd> - paste contents of register x
+          </li>
+          <li>
+            <kbd>"+y</kbd> - yank into the system clipboard register
+          </li>
+          <li>
+            <kbd>"+p</kbd> - paste from the system clipboard register
+          </li>
+        </ul>
+        <div class="well">
+          <strong>Tip</strong> Registers are being stored in ~/.viminfo, and will be loaded again on next restart of vim.
+        </div>
+        <div class="well">
+          <strong>Tip</strong> Special registers:
+          <p>
+             <kbd>0</kbd> - last yank<br>
+             <kbd>"</kbd> - unnamed register, last delete or yank<br>
+             <kbd>%</kbd> - current file name<br>
+             <kbd>#</kbd> - alternate file name<br>
+             <kbd>*</kbd> - clipboard contents (X11 primary)<br>
+             <kbd>+</kbd> - clipboard contents (X11 clipboard)<br>
+             <kbd>/</kbd> - last search pattern<br>
+             <kbd>:</kbd> - last command-line<br>
+             <kbd>.</kbd> - last inserted text<br>
+             <kbd>-</kbd> - last small (less than a line) delete<br>
+             <kbd>=</kbd> - expression register<br>
+             <kbd>_</kbd> - black hole register<br>
+          </p>
+        </div>
+       
+                <h2>Macros</h2>
+        <ul>
+          <li>
+            <kbd>qa</kbd> - record macro a
+          </li>
+          <li>
+            <kbd>q</kbd> - stop recording macro
+          </li>
+          <li>
+            <kbd>@a</kbd> - run macro a
+          </li>
+          <li>
+            <kbd>@@</kbd> - rerun last run macro
+          </li>
+        </ul>
+        
+       
+      
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+      <div>
+        <div id="footer" class="grid-block">
+          <div class="box">
+            <div class="box-header">
+              <h2>Additional Resources</h2>
+            </div>
+            <div class="box-body">
+              <div class="grid-block">
+
+                <div class="grid-lg-1-2">
+                  <h3>About the vim cheat sheet</h3>
+
+
+                 
+                  </p>
+                  <h3>More resources</h3>
+                  <p>
+                    Interactive Vim tutorial:
+                    <a href="https://openvim.com/" target="_blank" rel="noopener noreferrer">
+                      Open Vim
+                    </a>
+                  </p>
+                  <p>
+                    Vim quick reference from Vim help pages:
+                    <a href="https://vimhelp.org/quickref.txt.html" target="_blank" rel="noopener noreferrer">
+                      quickref.txt
+                    </a>
+                  </p>
+                  <p>
+                    List of all Vim ex (<kbd>:</kbd>) commands:
+                    <a href="https://vimhelp.org/index.txt.html#ex-cmd-index" target="_blank" rel="noopener noreferrer">
+                      ex-cmd-index
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-block link-to-repo">
+          <p>
+            Checkout the source on
+            <a href="https://github.com/rtorr/vim-cheat-sheet" target="_blank" rel="noopener noreferrer">
+              Github
+            </a>
+          </p>
+          <p>version: 3.0.4</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.CACHE_NAME = "3.0.4";
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/javascripts/sw.js?version=3.0.4');
+      });
+    }
+  </script>
+
+
+
+</body></html>
