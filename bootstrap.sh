@@ -15,7 +15,7 @@ function doIt() {
 		--exclude "shelf" \
 		$dryrun \
 		-avh --no-perms . ~;
-	./installs/install.sh
+	~/init/installs/install.sh
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
