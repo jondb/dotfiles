@@ -25,4 +25,12 @@ if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/pa
 if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
 
+# Next line adds command completion and path for AWS CLI
+export PATH=/Users/jon/work/aws-cli/penv/bin:$PATH
+autoload bashcompinit && bashcompinit
+if ! (( $+functions[compdef] )) ; then
+    autoload -U +X compinit && compinit
+fi
+
+complete -C '/Users/jon/work/aws-cli/penv/bin/aws_completer' aws
 
