@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-
-
-echo -n 'hostname or ip?: '
-read  hname
-
 [ $# -eq 0 ] && { echo "Usage: $0 hostname_or_ip" ; exit 1; }
 echo "removing entries for $1..."
 
