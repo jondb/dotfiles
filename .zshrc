@@ -24,6 +24,7 @@ if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/pa
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
+setopt HIST_IGNORE_SPACE
 
 # Next line adds command completion and path for AWS CLI
 export PATH=/Users/jon/work/aws-cli/penv/bin:$PATH
